@@ -71,5 +71,5 @@ public abstract class SimpleCache<K, V> {
         cache.clear();
     }
 
-    abstract K getId(V value);
+    public abstract K getId(V value);
 }

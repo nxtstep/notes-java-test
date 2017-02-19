@@ -1,4 +1,4 @@
-package io.supersimple.notes.data.repository;
+package io.supersimple.notes.data.repository.note;
 
 import org.junit.Test;
 
@@ -6,19 +6,14 @@ import java.util.Arrays;
 
 import io.supersimple.notes.data.models.Note;
 
-public class SimpleCacheTest {
+/**
+ * Created by arjan on 19/02/2017.
+ */
 
-    static class TestCache extends SimpleCache<String, Note> {
-
-        @Override
-        public String getId(Note value) {
-            return value.id();
-        }
-    }
-
+public class NoteCacheTest {
     @Test
     public void testSimpleMemCache() {
-        TestCache cache = new TestCache();
+        NoteCache cache = new NoteCache();
 
         //
         // Save
