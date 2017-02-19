@@ -6,10 +6,6 @@ import java.util.Arrays;
 
 import io.supersimple.notes.data.models.Note;
 
-/**
- * Created by arjan on 19/02/2017.
- */
-
 public class NoteCacheTest {
     @Test
     public void testSimpleMemCache() {
