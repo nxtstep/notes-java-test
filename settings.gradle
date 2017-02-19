@@ -1,0 +1,3 @@
+rootProject.name = 'notes-root'
+
+include ':notes'
