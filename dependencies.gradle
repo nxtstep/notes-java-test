@@ -19,7 +19,7 @@ ext {
 
     // test
     androidSupportTest = '0.4.1'
-    espressoTestVersion = '2.2.1'
+    espressoTestVersion = '2.2.2'
     junitVersion = '4.12'
     robolectricVersion = '3.2.2'
     mockitoVersion = '2.2.8'

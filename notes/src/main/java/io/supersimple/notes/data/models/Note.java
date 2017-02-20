@@ -9,6 +9,7 @@ public abstract class Note implements Parcelable {
     public static final Note EMPTY = Note.create("-1", "");
 
     public abstract String id();
+
     public abstract String value();
 
     static Builder builder() {
@@ -26,6 +27,7 @@ public abstract class Note implements Parcelable {
     @AutoValue.Builder
     public static abstract class Builder {
         public abstract Builder setId(String id);
+
         public abstract Builder setValue(String value);
 
         public abstract Note build();
