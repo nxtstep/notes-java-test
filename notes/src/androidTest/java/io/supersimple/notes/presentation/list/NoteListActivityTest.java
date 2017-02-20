@@ -18,22 +18,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import io.reactivex.Maybe;
+import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import io.supersimple.notes.R;
 import io.supersimple.notes.application.MockApplication;
 import io.supersimple.notes.data.models.Note;
 import io.supersimple.notes.data.repository.note.NoteRepository;
+import io.supersimple.notes.test.Cities;
 import io.supersimple.notes.test.rx.activity.RxActivityTest;
 
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.pressImeActionButton;
-import static android.support.test.espresso.action.ViewActions.typeText;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static io.supersimple.notes.test.TestUtils.withRecyclerView;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -87,35 +82,54 @@ public class NoteListActivityTest extends RxActivityTest {
 
     @Test
     public void testShowNoteList() {
-        List<Note> notes = Arrays.asList(Note.create("1", "First note"), Note.create("2", "Second note"));
-        when(mockRepository.list()).thenReturn(Maybe.just(notes));
+        List<String> notes = Arrays.asList(Cities.B);
+        when(mockRepository.list()).thenReturn(Observable.fromIterable(notes)
+                .map(note -> Note.create("id", note))
+                .toList()
+                .toMaybe());
 
         activityRule.launchActivity(new Intent());
 
         //
         // Check items in list
-        onView(withRecyclerView(R.id.rv_notes)
-                .atPositionOnView(1, R.id.tv_note))
-                .check(matches(withText("First note")));
-        onView(withRecyclerView(R.id.rv_notes)
-                .atPositionOnView(2, R.id.tv_note))
-                .check(matches(withText("Second note")));
+        NoteListTestRobot robot = new NoteListTestRobot();
+        robot.expectedNotes(notes)
+                .result()
+                .verify();
     }
 
     @Test
-    public void testAddNoteToList() {
+    public void testAddNoteToEmptyList() {
         when(mockRepository.list()).thenReturn(Maybe.empty());
         when(mockRepository.save(any())).thenAnswer(invocationOnMock ->
                 Single.just(invocationOnMock.getArguments()[0]));
 
         activityRule.launchActivity(new Intent());
 
-        onView(withRecyclerView(R.id.rv_notes)
-                .atPositionOnView(0, R.id.tv_note))
-                .perform(typeText("Important note"), pressImeActionButton());
+        // Add item to the list
+        NoteListTestRobot robot = new NoteListTestRobot();
+        robot.addNote("Important note")
+                .result()
+                .verify();
+    }
 
-        onView(withRecyclerView(R.id.rv_notes)
-                .atPositionOnView(1, R.id.tv_note))
-                .check(matches(withText("Important note")));
+    @Test
+    public void testAddNoteToList() {
+        List<String> notes = Arrays.asList("First note", "Second note");
+        when(mockRepository.list()).thenReturn(Observable.fromIterable(notes)
+                .map(note -> Note.create("id", note))
+                .toList()
+                .toMaybe());
+        when(mockRepository.save(any())).thenAnswer(invocationOnMock ->
+                Single.just(invocationOnMock.getArguments()[0]));
+
+        activityRule.launchActivity(new Intent());
+
+        // Add item to the list
+        NoteListTestRobot robot = new NoteListTestRobot();
+        robot.expectedNotes(notes)
+                .addNote("Important note")
+                .result()
+                .verify();
     }
 }
