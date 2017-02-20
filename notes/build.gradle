@@ -7,8 +7,6 @@ def versionBuild = 'git rev-list HEAD --count'.execute([], project.rootDir).text
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
@@ -56,10 +54,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-    
     lintOptions {
         textReport true
         textOutput 'stdout'
@@ -103,9 +97,6 @@ dependencies {
     
     compile "com.android.support:appcompat-v7:$androidSupportVersion"
     compile "com.android.support:design:$androidSupportVersion"
-    //
-    // Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     //
     // SuperSimple
     compile "org.bitbucket.nxtapp.supersimpleandroid:simple-ui:$supersimpleVersion"
@@ -167,17 +158,6 @@ dependencies {
     }
     // Mockito
     testCompile "org.mockito:mockito-core:$mockitoVersion"
-}
-
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		//
-    	// Kotlin
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-	}
 }
 
 dexcount {

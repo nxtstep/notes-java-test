@@ -17,8 +17,6 @@ ext {
     // ButterKnife
     butterknifeVersion = '8.5.1'
 
-    // Kotlin
-    kotlinVersion = '1.0.6'
     // test
     androidSupportTest = '0.4.1'
     espressoTestVersion = '2.2.1'
