@@ -2,6 +2,7 @@
 *io.supersimple.notes*  
 
 Android App to demonstrate Automated testing on Android with Dagger2, Mockito and RxJava2.  
+Using Jake Wharton's TestRobot pattern.  
 
 ### Build
 
