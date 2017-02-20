@@ -44,7 +44,7 @@ android {
             buildConfigField 'String', 'TRAVIS_BUILD_NR', '\"' + System.getenv("TRAVIS_BUILD_NUMBER") + '\"'
         }
         
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "io.supersimple.notes.test.runner.TestRunner"
     }
     
 	dataBinding {
@@ -142,6 +142,8 @@ dependencies {
         exclude module: 'recyclerview-v7'
     }
     androidTestCompile "com.android.support.test.espresso:espresso-intents:$espressoTestVersion"
+    androidTestCompile "org.mockito:mockito-core:$mockitoVersion"
+    androidTestCompile "com.linkedin.dexmaker:dexmaker-mockito:$dexmakerVersion"
     
     testCompile "junit:junit:$junitVersion"
     //

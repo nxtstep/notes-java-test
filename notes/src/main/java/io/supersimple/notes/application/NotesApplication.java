@@ -8,6 +8,7 @@ import android.content.Context;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
 
 import io.supersimple.notes.di.activity.ActivityComponentBuilder;
 import io.supersimple.notes.di.activity.ActivityComponentBuilderProvider;
@@ -16,7 +17,7 @@ import io.supersimple.notes.di.app.DaggerAppComponent;
 public class NotesApplication extends Application implements ActivityComponentBuilderProvider {
 
     @Inject
-    Map<Class<? extends Activity>, ActivityComponentBuilder> activityComponentBuilders;
+    Map<Class<? extends Activity>, Provider<ActivityComponentBuilder>> activityComponentBuilders;
 
     public static ActivityComponentBuilderProvider get(Context context) {
         return ((ActivityComponentBuilderProvider) context.getApplicationContext());
@@ -31,6 +32,6 @@ public class NotesApplication extends Application implements ActivityComponentBu
 
     @Override
     public ActivityComponentBuilder getActivityComponentBuilder(Class<? extends Activity> activityClass) {
-        return activityComponentBuilders.get(activityClass);
+        return activityComponentBuilders.get(activityClass).get();
     }
 }

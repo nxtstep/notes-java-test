@@ -1,7 +1,7 @@
 # Notes
 *io.supersimple.notes*  
 
-Describe the app here.
+Android App to demonstrate Automated testing on Android with Dagger2, Mockito and RxJava2.  
 
 ### Build
 

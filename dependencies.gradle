@@ -15,7 +15,7 @@ ext {
     daggerVersion = '2.9'
 
     // ButterKnife
-    butterknifeVersion = '8.4.0'
+    butterknifeVersion = '8.5.1'
 
     // Kotlin
     kotlinVersion = '1.0.6'
@@ -25,4 +25,5 @@ ext {
     junitVersion = '4.12'
     robolectricVersion = '3.2.2'
     mockitoVersion = '2.2.8'
+    dexmakerVersion = '2.2.0'
 }
