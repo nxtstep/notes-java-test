@@ -57,4 +57,14 @@ public class NoteListActivity extends ComponentActivity implements NoteListView 
     public void showError(Throwable error) {
         //TODO
     }
+
+    @Override
+    public void showEmpty() {
+        //TODO
+    }
+
+    @Override
+    public void showLoading(boolean flag) {
+        //TODO
+    }
 }
