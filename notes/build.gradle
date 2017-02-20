@@ -122,6 +122,10 @@ dependencies {
     compile "com.google.dagger:dagger:$daggerVersion"
     apt "com.google.dagger:dagger-compiler:$daggerVersion"
 
+    // ButterKnife
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    apt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
     //
     // Test-only dependencies
     // Force usage of support annotations in the test app, since it is internally used by the runner module.

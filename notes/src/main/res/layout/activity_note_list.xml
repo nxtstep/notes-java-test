@@ -10,4 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="io.supersimple.notes.presentation.list.NoteListActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_notes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="beforeDescendants"
+        android:divider="@null"
+        android:dividerHeight="2dp"
+        android:imeOptions="actionDone" />
+
 </RelativeLayout>
